@@ -69,7 +69,7 @@ trait CreatedBy
     {
         $this->disableCreatedBy = true;
 
-        $$saved = $this->save($options);
+        $saved = $this->save($options);
 
         $this->disableCreatedBy = false;
 
