@@ -1,0 +1,35 @@
+{
+    "name": "malhal/createdby",
+    "description": "A trait that adds createdBy and updatedBy user relations to your models",
+    "keywords": ["laravel", "framework", "createdBy", "updatedBy", "user", "models", "CreatedBy", "Laravel CreatedBy", "Laravel-CreatedBy", "Malcolm Hall", "malhal"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Malcolm Hall",
+            "email": "malcolmhall@me.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "laravel/framework": "5.3.*"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Malhal\\CreatedBy\\": "src/"
+        }
+    },
+    "autoload-dev": {
+    },
+    "config": {
+        "preferred-install": "dist"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
