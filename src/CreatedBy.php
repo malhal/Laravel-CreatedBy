@@ -65,6 +65,17 @@ trait CreatedBy
         }
     }
 
+    public function saveWithoutCreatedBy(array $options = [])
+    {
+        $this->disableCreatedBy = true;
+
+        $$saved = $this->save($options);
+
+        $this->disableCreatedBy = false;
+
+        return $$saved;
+    }
+
 //    public function getGuarded(){
 //        return array_merge(parent::getGuarded(), [$this->createdByForeignKey(), $this->updatedByForeignKey()]);
 //    }
