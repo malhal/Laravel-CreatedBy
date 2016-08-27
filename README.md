@@ -29,6 +29,10 @@ To query based on a user:
 
     $query->whereCreatedBy($user)
     
+To temporarily disable updates on a save:
+
+    $model->saveWithoutCreatedBy();
+    
 ## Installation
 
 [PHP](https://php.net) 5.6.4+ and [Laravel](http://laravel.com) 5.3+ are required.
