@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Malhal\CreatedBy;
 
 use Illuminate\Auth\Access\AuthorizationException;
 use \Illuminate\Database\Eloquent\Scope;
