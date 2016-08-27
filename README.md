@@ -42,3 +42,5 @@ To get the latest version of Laravel CreatedBy, simply require the project using
 ```bash
 $ composer require malhal/createdby dev-master
 ```
+
+test
