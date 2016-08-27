@@ -1,4 +1,10 @@
 <?php
+/**
+ *  Laravel-CreatedBy (http://github.com/malhal/Laravel-CreatedBy)
+ *
+ *  Created by Malcolm Hall on 27/8/2016.
+ *  Copyright © 2016 Malcolm Hall. All rights reserved.
+ */
 
 namespace Malhal\CreatedBy;
 
