@@ -32,6 +32,8 @@ To query based on a user:
 To temporarily disable updates on a save:
 
     $model->saveWithoutCreatedBy();
+
+If you would like to utilise this trait as part of a simple secuity model check out the extension of this trait [Laravel-CreatedBySecurity](https://github.com/malhal/Laravel-CreatedBySecurity).
     
 ## Installation
 
