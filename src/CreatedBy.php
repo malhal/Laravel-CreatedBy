@@ -50,18 +50,19 @@ trait CreatedBy
     public function updateCreatedBy(){
         $user = $this->currentUser();
 
-        if (! $this->isDirty($this->updatedByForeignKey())) {
-            $updatedBy = $this->updatedByRelationName();
+        if (!$this->isDirty($this->updatedByForeignKey())) {
+            //$updatedBy = $this->updatedByRelationName();
             // we disabled this to prevent the whole user appearing in the output array.
             // the alternative would have been to include a default hidden.
             //$this->$updatedBy()->associate($user);
             $this->setAttribute($this->updatedByForeignKey(), $user->id);
         }
 
-        if (! $this->exists && ! $this->isDirty($this->createdByForeignKey())) {
-            $createdBy = $this->createdByRelationName();
+        if (!$this->exists && !$this->isDirty($this->createdByForeignKey())) {
+            //$createdBy = $this->createdByRelationName();
             //$this->$createdBy()->associate($user);
             $this->setAttribute($this->createdByForeignKey(), $user->id);
+
         }
     }
 
@@ -73,7 +74,7 @@ trait CreatedBy
 
         $this->disableCreatedBy = false;
 
-        return $$saved;
+        return $saved;
     }
 
 //    public function getGuarded(){
