@@ -30,37 +30,28 @@ trait CreatedBy
         static::addGlobalScope(new CreatedByScope());
 
         static::creating(function($model){
-            if($model->disableCreatedBy){
-                return;
-            }
-
             $model->updateCreatedBy();
         });
 
         // by using this event instead of save, if the same update is done by a different user then no change is made.
         static::updating(function($model){
-            if($model->disableCreatedBy){
-                return;
-            }
-
             $model->updateCreatedBy();
         });
     }
 
     public function updateCreatedBy(){
-        $user = $this->currentUser();
+
+        if($this->disableCreatedBy){
+            return;
+        }
+
+        $user = Auth::user();
 
         if (!$this->isDirty($this->updatedByForeignKey())) {
-            //$updatedBy = $this->updatedByRelationName();
-            // we disabled this to prevent the whole user appearing in the output array.
-            // the alternative would have been to include a default hidden.
-            //$this->$updatedBy()->associate($user);
             $this->setAttribute($this->updatedByForeignKey(), $user->id);
         }
 
         if (!$this->exists && !$this->isDirty($this->createdByForeignKey())) {
-            //$createdBy = $this->createdByRelationName();
-            //$this->$createdBy()->associate($user);
             $this->setAttribute($this->createdByForeignKey(), $user->id);
 
         }
@@ -104,12 +95,12 @@ trait CreatedBy
         return defined('self::UPDATED_BY') ? self::UPDATED_BY : 'updatedBy';
     }
 
-    protected function createdByForeignKey()
+    public function createdByForeignKey()
     {
         return Str::snake($this->createdByRelationName()).'_id';
     }
 
-    protected function updatedByForeignKey()
+    public function updatedByForeignKey()
     {
         return Str::snake($this->updatedByRelationName()).'_id';
     }
@@ -121,19 +112,5 @@ trait CreatedBy
         $createdBy = $model->$createdBy();
 
         return $builder->where($createdBy->createdByForeignKey(), $user->getKey());
-    }
-
-    public function currentUser()
-    {
-        // if we came through a guard then we will have a user or it will have already exceptioned.
-        $user = Auth::user();
-        if(is_null($user)) {
-            // check if they used a token otherwise they will be a guest.
-            $user = Auth::guard('api')->user();
-            if (!$user && !is_null(Auth::guard('api')->getTokenForRequest())) {
-                throw new UnauthorizedException('Invalid token');
-            }
-        }
-        return $user;
     }
 }
