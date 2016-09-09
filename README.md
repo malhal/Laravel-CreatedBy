@@ -33,7 +33,7 @@ To temporarily disable updates on a save:
 
     $model->saveWithoutCreatedBy();
 
-If you would like to utilise this trait as part of a simple secuity model check out the extension of this trait [Laravel-CreatedBySecurity](https://github.com/malhal/Laravel-CreatedBySecurity).
+If you would like to utilise this trait as part of a simple secuity model check out the extension of this trait [Laravel-CreatedByPolicy](https://github.com/malhal/Laravel-CreatedByPolicy).
     
 ## Installation
 
@@ -42,5 +42,5 @@ If you would like to utilise this trait as part of a simple secuity model check 
 To get the latest version of Laravel CreatedBy, simply require the project using [Composer](https://getcomposer.org):
 
 ```bash
-$ composer require malhal/createdby dev-master
+$ composer require malhal/laravel-createdby dev-master
 ```
