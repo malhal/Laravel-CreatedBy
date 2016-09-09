@@ -1,5 +1,5 @@
 {
-    "name": "malhal/createdby",
+    "name": "malhal/laravel-createdby",
     "description": "A trait that adds createdBy and updatedBy user relations to your models",
     "keywords": ["laravel", "framework", "createdBy", "updatedBy", "user", "models", "CreatedBy", "Laravel CreatedBy", "Laravel-CreatedBy", "Malcolm Hall", "malhal"],
     "license": "MIT",
