@@ -48,11 +48,11 @@ trait CreatedBy
         $user = Auth::user();
 
         if (!$this->isDirty($this->updatedByForeignKey())) {
-            $this->setAttribute($this->updatedByForeignKey(), $user->id);
+            $this->setAttribute($this->updatedByForeignKey(), $user->getKey());
         }
 
         if (!$this->exists && !$this->isDirty($this->createdByForeignKey())) {
-            $this->setAttribute($this->createdByForeignKey(), $user->id);
+            $this->setAttribute($this->createdByForeignKey(), $user->getKey());
 
         }
     }
