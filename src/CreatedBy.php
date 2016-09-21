@@ -47,12 +47,12 @@ trait CreatedBy
 
         $user = Auth::user();
 
-        if (!$this->isDirty($this->updatedByForeignKey())) {
-            $this->setAttribute($this->updatedByForeignKey(), $user->getKey());
+        if (!$this->isDirty($this->getUpdatedByForeignKeyName())) {
+            $this->setAttribute($this->getUpdatedByForeignKeyName(), $user->getKey());
         }
 
-        if (!$this->exists && !$this->isDirty($this->createdByForeignKey())) {
-            $this->setAttribute($this->createdByForeignKey(), $user->getKey());
+        if (!$this->exists && !$this->isDirty($this->getCreatedByForeignKeyName())) {
+            $this->setAttribute($this->getCreatedByForeignKeyName(), $user->getKey());
 
         }
     }
@@ -79,12 +79,12 @@ trait CreatedBy
 
     public function createdBy()
     {
-        return $this->belongsTo(config('auth.providers.users.model'), $this->createdByForeignKey());
+        return $this->belongsTo(config('auth.providers.users.model'), $this->getCreatedByForeignKeyName());
     }
 
     public function updatedBy()
     {
-        return $this->belongsTo(config('auth.providers.users.model'), $this->updatedByForeignKey());
+        return $this->belongsTo(config('auth.providers.users.model'), $this->getUpdatedByForeignKeyName());
     }
 
     public function createdByRelationName(){
@@ -95,14 +95,22 @@ trait CreatedBy
         return defined('self::UPDATED_BY') ? self::UPDATED_BY : 'updatedBy';
     }
 
-    public function createdByForeignKey()
+    public function getCreatedByForeignKeyName()
     {
         return Str::snake($this->createdByRelationName()).'_id';
     }
 
-    public function updatedByForeignKey()
+    public function getUpdatedByForeignKeyName()
     {
         return Str::snake($this->updatedByRelationName()).'_id';
+    }
+
+    public function getCreatedByForeignKey(){
+        return $this->getAttribute($this->getCreatedByForeignKeyName());
+    }
+
+    public function getUpdatedByForeignKey(){
+        return $this->getAttribute($this->getUpdatedByForeignKeyName());
     }
 
     public function scopeWhereCreatedBy(Builder $builder, Model $user)
@@ -111,6 +119,6 @@ trait CreatedBy
         $createdBy = $model->createdByRelationName();
         $createdBy = $model->$createdBy();
 
-        return $builder->where($createdBy->createdByForeignKey(), $user->getKey());
+        return $builder->where($createdBy->getCreatedByForeignKeyName(), $user->getKey());
     }
 }

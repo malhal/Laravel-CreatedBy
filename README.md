@@ -18,7 +18,9 @@ Finally in your model use:
 
 Now whenever a model is created or updated the createdBy and updatedBy relations will be automatically updated.
 
-There are some extra sope features, e.g.
+Unfortunately you shouldn't use this trait on the User model when using auto-increment keys, this is due to the limitation in MySQL that a field cannot reference the currently being inserted ID. However you can still make use of the [Laravel-CreatedByPolicy](https://github.com/malhal/Laravel-CreatedByPolicy) with the workaround explained in that project. If you are using UUIDs for keys then this problem won't happen.
+
+There are some extra scope features, e.g.
 
 To add the join to retrieve the user info from the user table:
 
