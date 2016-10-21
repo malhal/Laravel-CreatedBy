@@ -27,6 +27,7 @@ trait CreatedBy
 
     public static function bootCreatedBy()
     {
+
         static::addGlobalScope(new CreatedByScope());
 
         static::creating(function($model){
